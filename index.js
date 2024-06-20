@@ -1,5 +1,11 @@
-const inquirer = require('inquirer')
-const pool = require('./db/connect'); // connect to postgres
+const inquirer = require('inquirer');
+// connect to postgres
+const pool = require('./db/connect'); 
+
+// LOGO
+const logo = require('asciiart-logo');
+const config = require('./package.json');
+console.log(logo(config).render());
 
 // Start server after DB connection
 pool.connect(err => {
@@ -8,9 +14,6 @@ pool.connect(err => {
     promptQuestions();
 });
 
-// create a function for all the possible outcomes for user query
-// if they select this, do that and so on 
-// prompt needs to be called after each user input until they are done 
 
 //add to database by user inputs
 
@@ -52,8 +55,6 @@ var promptQuestions = function () {
         }
     })
 };
-
-// WRTIE IF/SWITCH CASES and pass in the function for each option to execute
 
 // VIEW
 
@@ -164,14 +165,16 @@ function addRoles () {
         })}
 
 function addEmployee () {
-    pool.query(`SELECT * FROM employee, roles`, (err, result) => {
+    pool.query(`SELECT * FROM employee`, (err, result) => {
         if (err) throw err;
-
-        let roles = result.rows;
-        const rolesOptions = roles.map(({ id, title }) => ({ name: title , value: id}));
 
         let employee = result.rows;
         const managersOptions = employee.map(({ first_name , id }) => ({ name: first_name , value: id}))
+
+        pool.query(`SELECT title, id FROM roles`, (err, result ) => {
+            if (err) throw err;
+            let roles = result.rows;
+            const rolesOptions = roles.map(({ id, title }) => ({ name: title , value: id}));  
 
         inquirer.prompt([
             {
@@ -225,6 +228,7 @@ function addEmployee () {
             });
         })
     });
+})
 }
 
 // update  
@@ -236,14 +240,11 @@ function updateEmployeeRole() {
 
         let employees = result.rows;
         const employeeOptions = employees.map(({ id, first_name }) => ({ name: first_name , value: id}));
-    // console.log(employeeOptions, 'line 239');
 
         pool.query(`SELECT title, id FROM roles`, (err, result ) => {
             if (err) throw err;
             let roles = result.rows;
-            const rolesOptions = roles.map(({ id, title }) => ({ name: title , value: id}));
-    // console.log(rolesOptions, 'line 243')
-        
+            const rolesOptions = roles.map(({ id, title }) => ({ name: title , value: id}));        
 
     inquirer.prompt([
         {
