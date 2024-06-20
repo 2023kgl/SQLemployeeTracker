@@ -1,7 +1,17 @@
 {
   "dependencies": {
-    "express": "^4.19.2",
     "inquirer": "^8.2.4",
-    "pg": "^8.11.5"
-  }
+    "pg": "^8.12.0",
+    "start": "^5.1.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "sqlemployeetracker",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
