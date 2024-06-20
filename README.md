@@ -25,7 +25,6 @@ GITHUB REPO: https://github.com/2023kgl/SQLemployeeTracker
 
 WALKTHROUGH VIDEO: https://drive.google.com/file/d/1TNQnn9D6k-9UYAOBFNO4lNerOxZ4VDmj/view?usp=sharing
 
-
  ![CLI](assets/images/sqlemployeetracker.png)
 
 
