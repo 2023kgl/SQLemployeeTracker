@@ -1,5 +1,3 @@
--- TODO add sample data to make sure it is working - same thing as insert 
-
 INSERT INTO department 
     (dept_name)
 VALUES 
