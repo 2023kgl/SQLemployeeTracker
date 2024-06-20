@@ -1,4 +1,0 @@
--- TODO JOIN TABLES
--- SELECT *
--- FROM -----
--- JOIN ---- ON ----- = ----;
